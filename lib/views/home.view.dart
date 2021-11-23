@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:manju/colors/colors.colors.asset.dart';
+import 'package:manju/hippopotamus_components/box.hippo.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -10,6 +11,9 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   var file = 'assets/photo_tv_tower.webp';
+  List<Widget> boxs = [
+    BoxHippo(title: 'Titulo da nota', category: 'Categoria da nota')
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +24,18 @@ class _HomeState extends State<Home> {
             child: Stack(
               children: [
                 Positioned.fill(
-                  child: Image.asset(file),
+                  child: Image.asset(file), // Fundo do background.
+                ),
+                Container(
+                  padding: EdgeInsets.only(top: 70, left: 8, right: 8),
+                  child: ListView(
+                    children: boxs,
+                  ),
                 ),
                 SafeArea(
                   child: Container(
                     padding: const EdgeInsets.only(
-                        top: 5, left: 15, right: 15, bottom: 20),
+                        top: 5, left: 8, right: 8, bottom: 20),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
