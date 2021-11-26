@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:manju/colors/colors.colors.asset.dart';
-import 'package:manju/hippopotamus_components/box.hippo.dart';
+import 'package:manju/controllers/tasuku.dart';
+import 'package:manju/models/tasuku.models.dart';
+import 'package:manju/views/colors/colors.colors.asset.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -11,105 +12,147 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   var file = 'assets/photo_tv_tower.webp';
-  List<Widget> boxs = [
-    BoxHippo(title: 'Titulo da nota', category: 'Categoria da nota')
-  ];
+  List<Tasuku> selecionadas = [];
+
+  appBarDinamica() {
+    if (selecionadas.isEmpty) {
+      return AppBar(
+        elevation: 1,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Center(
+              child: Text(
+                'Criar',
+                style: TextStyle(
+                  color: manjuPrimaryColor,
+                  fontSize: 13.5,
+                ),
+              ),
+            ),
+          )
+        ],
+        centerTitle: true,
+        title: const Text(
+          '',
+          style: TextStyle(
+            color: Colors.black87,
+            fontWeight: FontWeight.normal,
+            fontSize: 17.5,
+          ),
+        ),
+        backgroundColor: Colors.white,
+      );
+    } else {
+      return AppBar(
+        centerTitle: true,
+        leading: IconButton(
+          onPressed: () {
+            setState(() {
+              selecionadas = [];
+            });
+          },
+          icon: const Icon(Icons.close),
+        ),
+        title: (selecionadas.length == 1)
+            ? Text(
+                '${selecionadas.length} item selecionado',
+                style: TextStyle(
+                  color: Colors.black87,
+                  fontSize: 13.5,
+                  fontWeight: FontWeight.normal,
+                ),
+              )
+            : Text(
+                '${selecionadas.length} items selecionados',
+                style: TextStyle(
+                  color: Colors.black87,
+                  fontSize: 13.5,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+        backgroundColor: Colors.white,
+        elevation: 1,
+        iconTheme: const IconThemeData(color: manjuPrimaryColor),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    final manjus = Tasukus.manjus;
     return Scaffold(
-      body: Row(
-        children: [
-          Expanded(
-            child: Stack(
-              children: [
-                Positioned.fill(
-                  child: Image.asset(file), // Fundo do background.
-                ),
-                Container(
-                  padding: EdgeInsets.only(top: 70, left: 8, right: 8),
-                  child: ListView(
-                    children: boxs,
-                  ),
-                ),
-                SafeArea(
-                  child: Container(
-                    padding: const EdgeInsets.only(
-                        top: 5, left: 8, right: 8, bottom: 20),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const CircleAvatar(
-                                radius: 30,
-                                backgroundColor: manjuSecundaryColor,
-                                child: Text('A'),
-                              ),
-                              IconButton(
-                                onPressed: () => {},
-                                icon: const Icon(
-                                  Icons.more_vert_rounded,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ],
-                          ),
-                          height: 55,
-                          width: double.infinity,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Container(
-                              decoration: const BoxDecoration(
-                                color: manjuPrimaryColor,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(18)),
-                              ),
-                              height: 35,
-                              width: 130,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: const [
-                                  Icon(
-                                    Icons.tungsten_outlined,
-                                    color: manjuPrimaryWhiteColor,
-                                  ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Text(
-                                    'Sugestão',
-                                    style: TextStyle(
-                                        color: manjuPrimaryWhiteColor),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 30,
-                            ),
-                            FloatingActionButton(
-                              onPressed: () => {},
-                              backgroundColor: manjuPrimaryColor,
-                              child: const Icon(
-                                Icons.add_outlined,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
+      appBar: appBarDinamica(),
+      body: ListView.separated(
+        itemBuilder: (BuildContext context, int manju) {
+          return ListTile(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(5))),
+            leading: (selecionadas.contains(manjus[manju]))
+                ? GestureDetector(
+                    onTap: () {
+                      // Quando está seleciodo
+                      setState(() {
+                        selecionadas.remove(manjus[manju]);
+                      });
+                    },
+                    child: Icon(
+                      Icons.check,
+                      size: 25,
+                    ),
+                  )
+                : GestureDetector(
+                    onTap: () {
+                      // Quando está descelecionado
+                      setState(() {
+                        selecionadas.add(manjus[manju]);
+                      });
+                    },
+                    child: Icon(
+                      Icons.check_box_outline_blank,
+                      size: 25,
                     ),
                   ),
-                )
-              ],
+            title: Text(
+              manjus[manju].title,
+              style: TextStyle(
+                color: Colors.black87,
+                fontSize: 13.5,
+              ),
             ),
-          ),
-        ],
+            trailing: Text(
+              manjus[manju].category,
+              style: TextStyle(
+                color: Colors.grey,
+                fontSize: 13.0,
+              ),
+            ),
+            selected: selecionadas.contains(manjus[manju]),
+            selectedTileColor: manjuPrimaryWhiteColor,
+            onLongPress: () {
+              setState(() {
+                (selecionadas.contains(manjus[manju]))
+                    ? selecionadas.remove(manjus[manju])
+                    : selecionadas.add(manjus[manju]);
+              });
+            },
+          );
+        },
+        padding: EdgeInsets.only(top: 6.0, bottom: 6.0, right: 6.0, left: 3.0),
+        separatorBuilder: (_, __) => Divider(),
+        itemCount: manjus.length,
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: selecionadas.isNotEmpty
+          ? FloatingActionButton.extended(
+              onPressed: () {},
+              label: Text(
+                'Enviar',
+                style: TextStyle(
+                  letterSpacing: 0,
+                ),
+              ))
+          : null,
     );
   }
 }

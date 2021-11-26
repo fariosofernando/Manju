@@ -17,6 +17,9 @@ class _ManjuAppState extends State<ManjuApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.red,
+      ),
       initialRoute: '/home',
       routes: {'/home': (context) => Home()},
     );
