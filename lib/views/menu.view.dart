@@ -4,6 +4,7 @@ import 'package:manju/views/colors/colors.colors.asset.dart';
 import 'package:manju/views/components/widgets/blacktext.text.widget.dart';
 import 'package:manju/views/components/widgets/editar.text.widget.dart';
 import 'package:manju/views/components/widgets/tile.widget.dart';
+import 'dart:developer' as developer;
 
 import 'components/widgets/divisor.widget.dart';
 
@@ -36,7 +37,7 @@ class _MenuState extends State<Menu> {
                     children: [
                       Container(
                         child: const Text(
-                          'Caixas de correio',
+                          'Caixa de manjus',
                           style: TextStyle(
                             color: Colors.black87,
                             fontWeight: FontWeight.bold,
@@ -45,23 +46,29 @@ class _MenuState extends State<Menu> {
                           ),
                         ),
                       ),
-                      Container(
-                        padding: const EdgeInsets.only(left: 15.0, right: 20.0),
-                        width: MediaQuery.of(context).size.width,
-                        height: 50,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            tile(
-                                icon: CupertinoIcons.bookmark,
-                                text: 'Recebido',
-                                color: Colors.blueAccent),
-                            tileRight(
-                                icon: CupertinoIcons.chevron_right,
-                                text: '233',
-                                textColor: Colors.grey.withOpacity(.5)),
-                          ],
+                      GestureDetector(
+                        child: Container(
+                          padding:
+                              const EdgeInsets.only(left: 15.0, right: 20.0),
+                          width: MediaQuery.of(context).size.width,
+                          height: 50,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              tile(
+                                  icon: CupertinoIcons.bookmark,
+                                  text: 'Recebido',
+                                  color: Colors.blueAccent),
+                              tileRight(
+                                  icon: CupertinoIcons.chevron_right,
+                                  text: '233',
+                                  textColor: Colors.grey.withOpacity(.5)),
+                            ],
+                          ),
                         ),
+                        onTap: () {
+                          print('Clicado');
+                        },
                       ),
                       divisor(),
                       Container(
@@ -91,7 +98,7 @@ class _MenuState extends State<Menu> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             const Text(
-                              'Gmail',
+                              'Meus manjus',
                               style: TextStyle(
                                 color: Colors.black87,
                                 fontWeight: FontWeight.bold,
