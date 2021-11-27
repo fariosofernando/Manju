@@ -1,18 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:manju/views/components/widgets/preview.widget.dart';
+import 'package:manju/views/view-content.view.dart';
 
 import 'components/widgets/divisor.widget.dart';
 import 'components/widgets/tile.widget.dart';
 
-class NewRecebidos extends StatefulWidget {
-  const NewRecebidos({Key? key}) : super(key: key);
+class Receved extends StatefulWidget {
+  const Receved({Key? key}) : super(key: key);
 
   @override
-  _NewRecebidosState createState() => _NewRecebidosState();
+  _RecevedState createState() => _RecevedState();
 }
 
-class _NewRecebidosState extends State<NewRecebidos> {
+class _RecevedState extends State<Receved> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,8 +62,12 @@ class _NewRecebidosState extends State<NewRecebidos> {
                       ),
 
                       ///////////////
-                      manjuPreview(width: MediaQuery.of(context).size.width),
-                      manjuPreview(width: MediaQuery.of(context).size.width)
+                      GestureDetector(
+                        onTap: () => Navigator.push(context,
+                            MaterialPageRoute(builder: (_) => ViewContent())),
+                        child: manjuPreview(
+                            width: MediaQuery.of(context).size.width),
+                      ),
                       //////////////
                     ],
                   ),
