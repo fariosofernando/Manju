@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:manju/views/home.view.dart';
+import 'package:manju/views/menu.view.dart';
 
 void main() {
   runApp(const ManjuApp());
@@ -18,10 +19,13 @@ class _ManjuAppState extends State<ManjuApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.red,
+        primarySwatch: Colors.blue,
       ),
-      initialRoute: '/home',
-      routes: {'/home': (context) => Home()},
+      initialRoute: '/',
+      routes: {
+        '/home': (context) => Home(),
+        '/': (context) => Menu(),
+      },
     );
   }
 }
