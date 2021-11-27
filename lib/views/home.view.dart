@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:manju/controllers/tasuku.dart';
 import 'package:manju/models/tasuku.models.dart';
@@ -17,15 +18,33 @@ class _HomeState extends State<Home> {
   appBarDinamica() {
     if (selecionadas.isEmpty) {
       return AppBar(
-        elevation: 1,
-        actions: [
+        leadingWidth: 150,
+        leading: Container(
+          child: Row(
+            children: [
+              IconButton(
+                onPressed: () => Navigator.pop(context, false),
+                icon: const Icon(
+                  CupertinoIcons.back,
+                  color: Colors.blueAccent,
+                ),
+              ),
+              Text(
+                'Anterior',
+                style: TextStyle(color: Colors.blueAccent),
+              )
+            ],
+          ),
+        ),
+        elevation: 0,
+        actions: const [
           Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding: EdgeInsets.all(20.0),
             child: Center(
               child: Text(
-                'Criar',
+                'Editar',
                 style: TextStyle(
-                  color: manjuPrimaryColor,
+                  color: Colors.blueAccent,
                   fontSize: 13.5,
                 ),
               ),

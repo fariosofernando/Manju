@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:manju/views/home.view.dart';
 import 'package:manju/views/menu.view.dart';
+import 'package:manju/views/pr-menu.view.dart';
 
 void main() {
   runApp(const ManjuApp());
@@ -23,7 +24,7 @@ class _ManjuAppState extends State<ManjuApp> {
       ),
       initialRoute: '/',
       routes: {
-        '/home': (context) => Home(),
+        '/home': (context) => NewRecebidos(),
         '/': (context) => Menu(),
       },
     );

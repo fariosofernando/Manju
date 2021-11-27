@@ -67,7 +67,7 @@ class _MenuState extends State<Menu> {
                           ),
                         ),
                         onTap: () {
-                          print('Clicado');
+                          Navigator.pushNamed(context, '/home');
                         },
                       ),
                       divisor(),
