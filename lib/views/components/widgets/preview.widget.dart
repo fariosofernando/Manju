@@ -4,7 +4,7 @@ import 'package:manju/views/components/addons/slicingcontent.addons.dart';
 import 'package:manju/views/components/widgets/divisor.widget.dart';
 import 'package:manju/views/components/widgets/tile.widget.dart';
 
-manjuPreview({
+mesagePreview({
   required double width,
   required String toname,
   required String titlemesage,

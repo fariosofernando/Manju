@@ -70,7 +70,7 @@ class _RecevedState extends State<Receved> {
                             MaterialPageRoute(
                                 builder: (_) =>
                                     ViewContent(mesage: Sms.listSms[0]))),
-                        child: manjuPreview(
+                        child: mesagePreview(
                           width: MediaQuery.of(context).size.width,
                           toname: Sms.listSms[0].toName,
                           titlemesage: Sms.listSms[0].titleMesage!,
