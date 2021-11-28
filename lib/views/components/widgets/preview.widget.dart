@@ -1,9 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:manju/views/components/addons/slicingcontent.addons.dart';
 import 'package:manju/views/components/widgets/divisor.widget.dart';
 import 'package:manju/views/components/widgets/tile.widget.dart';
 
-manjuPreview({required double width}) {
+manjuPreview({
+  required double width,
+  required String toname,
+  required String titlemesage,
+  required String minContent,
+  required bool read,
+}) {
   return Column(
     children: [
       Container(
@@ -13,9 +20,13 @@ manjuPreview({required double width}) {
             Container(
               alignment: Alignment.topCenter,
               width: 17,
-              child: CircleAvatar(
-                backgroundColor: Colors.blueAccent,
-              ),
+              child: (read == false)
+                  ? CircleAvatar(
+                      backgroundColor: Colors.blueAccent,
+                    )
+                  : CircleAvatar(
+                      backgroundColor: Colors.blueAccent.withOpacity(0),
+                    ),
             ),
             Column(
               children: [
@@ -30,7 +41,7 @@ manjuPreview({required double width}) {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Luis Jó',
+                        toname,
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       tileUnic(
@@ -49,7 +60,7 @@ manjuPreview({required double width}) {
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            'Quase perdi a credibilidade',
+                            slicingContent(content: titlemesage, limited: 30),
                             style: TextStyle(fontWeight: FontWeight.bold),
                             textAlign: TextAlign.left,
                           ),
@@ -60,7 +71,7 @@ manjuPreview({required double width}) {
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            'Olá, tudo bem? Hoje eu quero partilhar um erro que eu cometi usando Excel...',
+                            minContent,
                             textAlign: TextAlign.left,
                             style: TextStyle(
                               color: Colors.grey,

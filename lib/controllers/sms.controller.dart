@@ -13,7 +13,7 @@ class Sms {
       titleMesage:
           'Your Apple ID was used to sign in to iCloud via a web browser',
       bodyMesage:
-          '\nDear Keven Nhancale,\n\nYou Apple ID (kevennhancale@gmail.com) was used to sign in to iCloud via a web browser.\nDate and Time: 25 October 2021, 11:49 am UTC\n\nif the iformation above looks familiar, you can desregard this email\n\nif you have not signed in to iCloud recently and believe someone else may have accessed your account, go to...',
+          'Dear Keven Nhancale,\nYou Apple ID (kevennhancale@gmail.com) was used to sign in to iCloud via a web browser.\nDate and Time: 25 October 2021, 11:49 am UTC\nif the iformation above looks familiar, you can desregard this email\nif you have not signed in to iCloud recently and believe someone else may have accessed your account, go to...',
       date: '25/10/21',
       time: '11:49',
     ),

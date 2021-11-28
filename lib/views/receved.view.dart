@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:manju/controllers/sms.controller.dart';
+import 'package:manju/views/components/addons/slicingcontent.addons.dart';
 import 'package:manju/views/components/widgets/preview.widget.dart';
 import 'package:manju/views/view-content.view.dart';
 
@@ -63,10 +65,19 @@ class _RecevedState extends State<Receved> {
 
                       ///////////////
                       GestureDetector(
-                        onTap: () => Navigator.push(context,
-                            MaterialPageRoute(builder: (_) => ViewContent())),
+                        onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) =>
+                                    ViewContent(mesage: Sms.listSms[0]))),
                         child: manjuPreview(
-                            width: MediaQuery.of(context).size.width),
+                          width: MediaQuery.of(context).size.width,
+                          toname: Sms.listSms[0].toName,
+                          titlemesage: Sms.listSms[0].titleMesage!,
+                          minContent: slicingContent(
+                              limited: 52, content: Sms.listSms[0].bodyMesage!),
+                          read: false,
+                        ),
                       ),
                       //////////////
                     ],

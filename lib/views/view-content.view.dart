@@ -1,11 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:manju/controllers/sms.controller.dart';
+import 'package:manju/controllers/spec-sms.controller.dart';
+import 'package:manju/models/mesage.model.dart';
 import 'package:manju/views/components/widgets/contentBar.widget.dart';
 import 'package:manju/views/components/widgets/divisor.widget.dart';
 import 'package:manju/views/components/widgets/tile.widget.dart';
 
 class ViewContent extends StatefulWidget {
-  const ViewContent({Key? key}) : super(key: key);
+  Mesage mesage;
+  ViewContent({Key? key, required this.mesage}) : super(key: key);
 
   @override
   _ViewContentState createState() => _ViewContentState();
@@ -33,7 +37,7 @@ class _ViewContentState extends State<ViewContent> {
               height: 20,
               width: 40,
               child: Center(
-                child: Text('232'),
+                child: Text(spec()['notread'].toString()),
               ),
               decoration: BoxDecoration(
                 color: Colors.blueAccent,
@@ -62,7 +66,10 @@ class _ViewContentState extends State<ViewContent> {
               children: [
                 Column(
                   children: [
-                    contentBar(),
+                    contentBar(
+                        toname: widget.mesage.toName,
+                        forin: widget.mesage.forIn,
+                        date: widget.mesage.date),
                     divisor(top: 10),
                     Container(
                       padding: EdgeInsets.only(
@@ -71,16 +78,22 @@ class _ViewContentState extends State<ViewContent> {
                         left: 20,
                       ),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Your Apple ID was used to sign in to iCloud via a web browser',
+                            widget.mesage.titleMesage!,
+                            textAlign: TextAlign.start,
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
+                          const SizedBox(
+                            height: 8.0,
+                          ),
                           Text(
-                            '\nDear Keven Nhancale,\n\nYou Apple ID (kevennhancale@gmail.com) was used to sign in to iCloud via a web browser.\nDate and Time: 25 October 2021, 11:49 am UTC\n\nif the iformation above looks familiar, you can desregard this email\n\nif you have not signed in to iCloud recently and believe someone else may have accessed your account, go to...',
+                            widget.mesage.bodyMesage!,
+                            textAlign: TextAlign.justify,
                             style: TextStyle(color: Colors.grey),
                           ),
                         ],

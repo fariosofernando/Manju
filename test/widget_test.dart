@@ -1,7 +1,12 @@
 import 'package:manju/controllers/sms.controller.dart';
+import 'package:manju/controllers/spec-sms.controller.dart';
 import 'package:manju/models/mesage.model.dart';
 
 void main() {
+  print(spec());
+  // print('Your Apple ID was used to sign'.length);
+  // delimitandoAVisualizacaoDoTexto(content: Sms.listSms[0].bodyMesage!);
+  //obtentdoAInicialParaIconSeNaoTiver(text: "apple"); // Obter a letra inicial que ira ficar no icone se nao tiver.
   // Mesage sms = Sms.listSms[0];
   // print('Enviado por: ${sms.toName}');
   // print('Data e hora: ${sms.date} ${sms.time}');
@@ -10,7 +15,7 @@ void main() {
   // print('Mesagem: ${sms.bodyMesage}');
   //
   // ignore: avoid_print
-  print('QutSms: ${smsNaoLidas()}');
+  // print('QutSms: ${smsNaoLidas()}');
 }
 
 int smsNaoLidas() {
@@ -35,4 +40,32 @@ int smsNaoLidas() {
   // ignore: avoid_print
   print('not reading: ${numNot}');
   return x;
+}
+
+obtentdoAInicialParaIconSeNaoTiver({required String text}) {
+  int index = 0;
+  List<String> characters = [];
+  for (var rune in text.runes) {
+    var character = String.fromCharCode(rune);
+    characters.add(character);
+  }
+  // ignore: avoid_print
+  print(characters[index].toUpperCase());
+}
+
+// lenght = 76
+delimitandoAVisualizacaoDoTexto({required String content}) {
+  List<String> delimitadora = [];
+  String newMinContent = '';
+  for (var rune in content.runes) {
+    var character = String.fromCharCode(rune);
+    delimitadora.add(character);
+    int limit = (delimitadora.length);
+    if (limit == 70) {
+      for (var delString in delimitadora) {
+        newMinContent += delString;
+      }
+    }
+  }
+  print(newMinContent += '...');
 }
