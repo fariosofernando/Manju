@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:manju/views/home.view.dart';
 import 'package:manju/views/menu.view.dart';
 import 'package:manju/views/receved.view.dart';
 import 'package:manju/views/view-content.view.dart';
@@ -8,6 +7,7 @@ void main() {
   runApp(const ManjuApp());
 }
 
+// Widget inicial.
 class ManjuApp extends StatefulWidget {
   const ManjuApp({Key? key}) : super(key: key);
 
