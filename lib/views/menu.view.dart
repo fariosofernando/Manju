@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:manju/controllers/spec-sms.controller.dart';
 import 'package:manju/views/colors/colors.colors.asset.dart';
 import 'package:manju/views/components/widgets/blacktext.text.widget.dart';
 import 'package:manju/views/components/widgets/editar.text.widget.dart';
@@ -61,7 +62,7 @@ class _MenuState extends State<Menu> {
                                   color: Colors.blueAccent),
                               tileRight(
                                   icon: CupertinoIcons.chevron_right,
-                                  text: '233',
+                                  text: spec()['qut'].toString(),
                                   textColor: Colors.grey.withOpacity(.5)),
                             ],
                           ),
