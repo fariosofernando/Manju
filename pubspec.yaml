@@ -27,6 +27,8 @@ environment:
 # a versão mais recente disponível em pub.dev. Para ver quais dependências têm mais
 # versões disponíveis, execute `flutter pub outdated`.
 dependencies:
+  sqflite: ^2.0.0+4
+  page_transition: ^2.0.4
   provider: ^6.0.1
   get: ^4.3.8
   flutter:
